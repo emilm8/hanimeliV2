@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hanımeli – Ev Yapımı Yemekler | Online Sipariş</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffbea;--card:#fffefa;--ink:#2a2a1c;--muted:#645f45;--berry:#c23a5f;--honey:#f6c445;--leaf:#2f6b45;--line:#f0e3b0;--tile:#fff1a8;--blue:#2b69b0;--sky:#d6e8fb;
+--head:"Bricolage Grotesque",Georgia,serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14211a;--card:#1f3026;--ink:#f7f3dc;--muted:#b9c2a8;--berry:#f08aa3;--leaf:#8fd1a0;--line:#33473a;--tile:#3b3a1e;--blue:#8ec1ff;--sky:#1d3552}}
+:root[data-theme="dark"]{--bg:#14211a;--card:#1f3026;--ink:#f7f3dc;--muted:#b9c2a8;--berry:#f08aa3;--leaf:#8fd1a0;--line:#33473a;--tile:#3b3a1e;--blue:#8ec1ff;--sky:#1d3552}
+:root[data-theme="dark"] .add,:root[data-theme="dark"] .tabs button[aria-pressed="true"]{color:#2a1018}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .add,:root:not([data-theme="light"]) .tabs button[aria-pressed="true"]{color:#2a1018}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:3px solid var(--sky)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;gap:12px;flex-wrap:wrap}
+.logo{font:800 1.6rem var(--head);text-decoration:none;color:var(--berry)}
+nav a{margin-left:18px;text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+h1,h2,h3{font-family:var(--head)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:46px 0 36px}
+h1{font-size:clamp(2.4rem,6.4vw,4.3rem);line-height:1.04;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);max-width:48ch;margin:0 0 24px}
+.btn{display:inline-block;border:0;cursor:pointer;font:700 1rem var(--body);background:var(--honey);color:#2b2008;padding:13px 26px;border-radius:999px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--blue);margin-left:8px}
+.hero-art{background:linear-gradient(135deg,var(--tile) 45%,var(--sky));border-radius:40% 60% 55% 45%/50% 45% 55% 50%;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hero-art svg{width:100%;height:auto}
+.stats{display:flex;gap:30px;flex-wrap:wrap;padding:20px 0 6px;border-top:1px solid var(--line);margin-top:10px}
+.stats div{font-size:.95rem;color:var(--muted)}
+.stats b{display:block;font:800 1.7rem var(--head);color:var(--blue)}
+section{padding:50px 0}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:0 0 8px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 26px;max-width:58ch}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tabs button{font:500 .98rem var(--body);cursor:pointer;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:9px 18px;border-radius:999px}
+.tabs button[aria-pressed="true"]{background:var(--berry);color:#fff;border-color:var(--berry)}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.dish svg{width:100%;height:132px;background:var(--tile)}
+.dish div{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+.dish h3{margin:0;font-size:1.1rem}
+.dish p{margin:2px 0 12px;color:var(--muted);font-size:.92rem;line-height:1.45;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center}
+.price{font-weight:700;color:var(--leaf)}
+.add{font:700 .9rem var(--body);cursor:pointer;background:var(--berry);color:#fff;border:0;border-radius:999px;padding:7px 15px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;counter-reset:s}
+.step{background:var(--sky);border:1px solid var(--line);border-radius:20px;padding:22px;counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--honey);color:#2b2008;font:800 1.1rem var(--head);margin-bottom:10px}
+.step h3{margin:0 0 4px}.step p{margin:0;color:var(--muted);font-size:.95rem}
+.cart{background:var(--card);border:2px solid var(--blue);border-radius:26px;padding:26px;display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+.cart ul{list-style:none;margin:0;padding:0}
+.cart li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font-size:1.1rem}
+.qty span{display:inline-block;min-width:26px;text-align:center;font-weight:700}
+.empty{color:var(--muted)}
+.total{font:800 1.5rem var(--head);margin:0 0 12px}
+.cart input,.cart textarea{width:100%;font:1rem var(--body);padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);margin-bottom:10px}
+.cart a.btn{display:block;text-align:center}
+.cart a.off{opacity:.45;pointer-events:none}
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:20px 20px 20px 4px;padding:22px}
+blockquote p{margin:0 0 10px}blockquote cite{color:var(--muted);font-style:normal;font-size:.93rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;color:var(--blue)}
+details p{margin:8px 0 0;color:var(--muted)}
+.info{background:#1f4e8c;color:#fff;border-radius:30px;padding:40px 30px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.info h2{color:#fff}.info p{margin:0 0 8px;color:#dbe9fa}
+.info dl{margin:0}.info dt{font-weight:700}.info dd{margin:0 0 10px;color:#dbe9fa}
+footer{text-align:center;color:var(--muted);padding:30px 0 90px;font-size:.92rem}
+.pill{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--honey);color:#2b2008;font-weight:700;padding:12px 20px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+@media(max-width:760px){.hero,.cart,.info{grid-template-columns:1fr}.hero-art{order:-1;max-width:340px}nav a{margin-left:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="corba"><path d="M44 22c-6-6 6-8 0-16M60 24c-6-6 6-8 0-18M76 22c-6-6 6-8 0-16" stroke="#9aa89d" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M20 42a40 38 0 0 0 80 0Z" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><ellipse cx="60" cy="42" rx="40" ry="9" fill="#e48a2f" stroke="#2f6b45" stroke-width="3"/><circle cx="50" cy="42" r="2.5" fill="#f7d58a"/><circle cx="68" cy="44" r="2.5" fill="#f7d58a"/></g>
+<g id="sarma"><ellipse cx="60" cy="58" rx="48" ry="20" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><g fill="#4d8a5f" stroke="#2f6b45" stroke-width="2"><rect x="26" y="40" width="40" height="15" rx="7.5" transform="rotate(-8 46 47)"/><rect x="54" y="38" width="40" height="15" rx="7.5" transform="rotate(6 74 45)"/><rect x="34" y="52" width="40" height="15" rx="7.5" transform="rotate(4 54 59)"/><rect x="52" y="56" width="36" height="14" rx="7" transform="rotate(-6 70 63)"/></g><path d="M92 38l10-8-3 14z" fill="#f6c445"/></g>
+<g id="manti"><path d="M18 40a42 40 0 0 0 84 0Z" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><ellipse cx="60" cy="40" rx="42" ry="10" fill="#fff" stroke="#2f6b45" stroke-width="3"/><g fill="#f3d9a3" stroke="#c99a46" stroke-width="1.5"><path d="M34 40l9-8 9 8z"/><path d="M52 42l9-8 9 8z"/><path d="M69 40l9-8 9 8z"/><path d="M45 36l8-7 8 7z"/><path d="M61 36l8-7 8 7z"/></g><path d="M30 41c10 4 50 4 60 0" stroke="#d9472b" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="5 5"/></g>
+<g id="kofte"><ellipse cx="60" cy="58" rx="50" ry="22" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><g fill="#9a5a34" stroke="#6b3a1c" stroke-width="2"><ellipse cx="42" cy="52" rx="15" ry="8" transform="rotate(-15 42 52)"/><ellipse cx="68" cy="50" rx="15" ry="8" transform="rotate(10 68 50)"/><ellipse cx="54" cy="64" rx="15" ry="8"/></g><circle cx="90" cy="58" r="9" fill="#d9472b"/><circle cx="90" cy="58" r="4" fill="#f08a73"/></g>
+<g id="salata"><path d="M20 40a40 36 0 0 0 80 0Z" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><g><circle cx="42" cy="36" r="13" fill="#6fae5c"/><circle cx="62" cy="30" r="14" fill="#8cc46b"/><circle cx="80" cy="37" r="12" fill="#6fae5c"/><circle cx="52" cy="40" r="6" fill="#d9472b"/><circle cx="72" cy="42" r="6" fill="#d9472b"/><circle cx="60" cy="38" r="5" fill="#cfe8a8"/></g><ellipse cx="60" cy="42" rx="40" ry="6" fill="none" stroke="#2f6b45" stroke-width="3"/></g>
+<g id="borek"><ellipse cx="60" cy="56" rx="50" ry="22" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><g fill="#e6a43d" stroke="#a96a1a" stroke-width="2" stroke-linejoin="round"><path d="M22 56l34-22 6 24z"/><path d="M64 36l34 20-30 8z"/><path d="M30 62l36 6-10 8z" fill="#efb75a"/></g><g fill="#fff3c9"><circle cx="46" cy="50" r="2"/><circle cx="80" cy="52" r="2"/><circle cx="58" cy="44" r="2"/></g></g>
+<g id="baklava"><ellipse cx="60" cy="58" rx="50" ry="22" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><g stroke="#a96a1a" stroke-width="2" stroke-linejoin="round"><path d="M24 56l16-16 16 16-16 14z" fill="#f6c445"/><path d="M54 52l16-16 16 16-16 14z" fill="#f4c658"/><path d="M40 62l16-12 16 12-16 12z" fill="#e6a43d"/></g><g fill="#6f9a3c"><circle cx="40" cy="56" r="3"/><circle cx="70" cy="52" r="3"/><circle cx="56" cy="62" r="3"/></g></g>
+<g id="kek"><ellipse cx="60" cy="66" rx="48" ry="12" fill="#f4efe4" stroke="#2f6b45" stroke-width="3"/><path d="M26 64V40a34 24 0 0 1 68 0v24a34 10 0 0 1-68 0Z" fill="#d9964a" stroke="#a96a1a" stroke-width="2"/><path d="M26 44c10 8 20-8 34 0s24-8 34 0" stroke="#fff3c9" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+</defs></svg>
+
+<header><div class="wrap"><a class="logo" href="#">Hanımeli</a>
+<nav><a href="#menu">Menü</a><a href="#nasil">Nasıl çalışır</a><a href="#sepet">Sepet</a><a href="#sss">SSS</a><a href="#iletisim">İletişim</a></nav></div></header>
+
+<main class="wrap">
+<div class="hero">
+  <div>
+    <h1>Evdeki tat, kapınızda.</h1>
+    <p>Hanımeli'de yemekler her gün taze, küçük kazanlarda ve katkısız hazırlanır. Menüden seçin, sepeti doldurun, siparişi WhatsApp'tan tek dokunuşla gönderin.</p>
+    <a class="btn" href="#menu">Menüyü gör</a><a class="btn ghost" href="#sepet">Sepetim</a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 120 90"><use href="#manti"/></svg><svg viewBox="0 0 120 90"><use href="#baklava"/></svg>
+    <svg viewBox="0 0 120 90"><use href="#sarma"/></svg><svg viewBox="0 0 120 90"><use href="#corba"/></svg>
+  </div>
+</div>
+<div class="stats"><div><b>9</b>çeşit yemek</div><div><b>Günlük</b>taze hazırlık</div><div><b>0</b>koruyucu, hazır sos</div></div>
+
+<section id="menu"><h2>Menü</h2><p class="sub">Kategori seçin, beğendiğinizi sepete ekleyin.</p>
+<div class="tabs" id="tabs" role="group" aria-label="Kategori"></div><div class="menu" id="menuList"></div></section>
+
+<section id="nasil"><h2>Nasıl çalışır?</h2><p class="sub">Üç adımda sofranız hazır.</p>
+<div class="steps">
+<div class="step"><h3>Seçin</h3><p>Menüden istediğiniz yemekleri sepete ekleyin.</p></div>
+<div class="step"><h3>Gönderin</h3><p>Adresinizi yazın, siparişi WhatsApp ile bize iletin.</p></div>
+<div class="step"><h3>Afiyet olsun</h3><p>Yemekleriniz sıcak sıcak size ulaşır.</p></div></div></section>
+
+<section id="sepet"><h2>Sepetim</h2><p class="sub">Siparişiniz WhatsApp mesajı olarak hazırlanır.</p>
+<div class="cart"><div><ul id="cartList"></ul></div>
+<div><p class="total" id="total">0 ₺</p>
+<input id="name" placeholder="Adınız" autocomplete="name"><textarea id="addr" rows="2" placeholder="Adres ve not"></textarea>
+<a class="btn off" id="send" href="#sepet" target="_blank" rel="noopener">WhatsApp ile sipariş ver</a></div></div></section>
+
+<section><h2>Müşterilerimiz ne diyor?</h2><p class="sub">Örnek yorumlar, kendi müşteri yorumlarınızla değiştirin.</p>
+<div class="reviews">
+<blockquote><p>Mantı tıpkı annemin yaptığı gibiydi. Her hafta sipariş veriyoruz.</p><cite>Aylin K.</cite></blockquote>
+<blockquote><p>Sarmalar tam kıvamında, baklava ise çok çıtır. Teslimat da zamanında geldi.</p><cite>Murat D.</cite></blockquote>
+<blockquote><p>Misafirimiz için börek ve kek sipariş ettik. Herkes tarif sordu.</p><cite>Selin A.</cite></blockquote></div></section>
+
+<section id="sss"><h2>Sık sorulanlar</h2><p class="sub">Aklınıza takılan bir şey varsa buradan bakın.</p>
+<details><summary>Siparişi ne kadar önceden vermeliyim?</summary><p>Bir gün önceden verirseniz yemekler taze hazırlanır. Aynı gün için telefonla sorabilirsiniz.</p></details>
+<details><summary>Teslimat yapıyor musunuz?</summary><p>Evet. Teslimat bölgesi ve ücreti için bizimle iletişime geçin.</p></details>
+<details><summary>Özel gün ve toplu siparişler mümkün mü?</summary><p>Elbette. Misafir sofrası, doğum günü ve toplantılar için porsiyon sayısını önceden yazmanız yeterli.</p></details>
+<details><summary>Malzemeler nasıl?</summary><p>Taze sebze, tereyağı ve zeytinyağı kullanıyoruz. Hazır sos ve koruyucu yok.</p></details></section>
+
+<section id="iletisim"><div class="info"><div><h2>Bize ulaşın</h2><p>Siparişleriniz ve sorularınız için her gün buradayız.</p></div>
+<dl><dt>Telefon</dt><dd><a href="tel:+900000000000">+90 000 000 00 00</a></dd><dt>E-posta</dt><dd><a href="mailto:merhaba@hanimeli.example">merhaba@hanimeli.example</a></dd><dt>Çalışma saatleri</dt><dd>Her gün 09:00 – 20:00</dd></dl></div></section>
+</main>
+<footer>© 2026 Hanımeli – Ev Yapımı Yemekler</footer>
+<a class="pill" id="pill" href="#sepet">Sepet: 0</a>
+
+<script>
+const PHONE="900000000000";
+const D=[
+["c1","Mercimek çorbası","Limon ve nane ile",4,"Başlangıçlar","corba"],
+["c2","Ezogelin çorbası","Bulgurlu, doyurucu",5,"Başlangıçlar","corba"],
+["c3","Çoban salata","Mevsim sebzeleriyle",4,"Başlangıçlar","salata"],
+["a1","Yaprak sarma","Zeytinyağlı, pirinç dolgulu",9,"Ana yemekler","sarma"],
+["a2","Ev mantısı","Yoğurt ve naneli tereyağı ile",10,"Ana yemekler","manti"],
+["a3","İzmir köfte","Patates ve sos ile",11,"Ana yemekler","kofte"],
+["h1","Peynirli börek","Elde açılmış yufka",6,"Hamur işleri","borek"],
+["h2","Ispanaklı gözleme","Tereyağlı, sıcak",6,"Hamur işleri","borek"],
+["t1","Fıstıklı baklava","Şerbeti dengeli, katları çıtır",8,"Tatlılar","baklava"],
+["t2","Elmalı tarçınlı kek","Her sabah fırından",5,"Tatlılar","kek"]];
+const cats=["Hepsi",...new Set(D.map(d=>d[4]))];
+const cart={};let cur="Hepsi";
+const $=s=>document.querySelector(s);
+function tabs(){$("#tabs").innerHTML=cats.map(c=>`<button data-c="${c}" aria-pressed="${c===cur}">${c}</button>`).join("")}
+function menu(){$("#menuList").innerHTML=D.filter(d=>cur==="Hepsi"||d[4]===cur).map(d=>`<article class="dish"><svg viewBox="0 0 120 90" role="img" aria-label="${d[1]}"><use href="#${d[5]}"/></svg><div><h3>${d[1]}</h3><p>${d[2]}</p><div class="row"><span class="price">${d[3]} ₺</span><button class="add" data-id="${d[0]}">Sepete ekle</button></div></div></article>`).join("")}
+function draw(){
+  const ids=Object.keys(cart);let sum=0,n=0,lines=[];
+  $("#cartList").innerHTML=ids.length?ids.map(id=>{const d=D.find(x=>x[0]===id),q=cart[id];sum+=d[3]*q;n+=q;lines.push(`${q} x ${d[1]}`);
+    return `<li><span>${d[1]}</span><span class="qty"><button data-m="${id}" aria-label="Azalt">−</button><span>${q}</span><button data-p="${id}" aria-label="Artır">+</button></span></li>`}).join(""):'<li class="empty">Sepetiniz boş. Menüden yemek ekleyin.</li>';
+  $("#total").textContent=sum+" ₺";$("#pill").textContent="Sepet: "+n;
+  const msg=`Merhaba, sipariş vermek istiyorum:\n${lines.join("\n")}\nToplam: ${sum} ₺\nAd: ${$("#name").value}\nAdres/not: ${$("#addr").value}`;
+  const a=$("#send");a.href=ids.length?`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`:"#sepet";a.classList.toggle("off",!ids.length);
+}
+document.addEventListener("click",e=>{const t=e.target;
+  if(t.dataset.c){cur=t.dataset.c;tabs();menu()}
+  if(t.dataset.id){cart[t.dataset.id]=(cart[t.dataset.id]||0)+1;draw()}
+  if(t.dataset.p){cart[t.dataset.p]++;draw()}
+  if(t.dataset.m){if(--cart[t.dataset.m]<=0)delete cart[t.dataset.m];draw()}});
+$("#name").addEventListener("input",draw);$("#addr").addEventListener("input",draw);
+tabs();menu();draw();
+</script>
+</body>
+</html>
